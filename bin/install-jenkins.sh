@@ -9,7 +9,7 @@ DOCKER_COMPOSE_EXE=$(which docker-compose)
 
 if [ -f $DOCKER_COMPOSE_EXE ]; then
     docker image inspect jenkins:latest >/dev/null 2>&1 && {
-        echo "Jenkins already installed."
+        echo "Jenkins is already installed."
     } || {
 
         echo ""

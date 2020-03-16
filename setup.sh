@@ -32,7 +32,7 @@ do
         echo "Checking applications..."
         echo "----------------------------------------------"
 
-        # checking docker instaled
+        # checking docker installed
         if command -v docker >/dev/null 2>&1; then
             echo "Docker is already installed..."
         else
@@ -56,6 +56,9 @@ do
             echo "Jenkins not installed."
         fi
 
+        echo ""
+        echo "----------------------------------------------"
+        echo "      Application installation has ended!     "
         echo "----------------------------------------------"
         echo ""
     ;;
@@ -74,7 +77,7 @@ do
             echo "Jenkins not installed."
         fi
 
-        # checking docker instaled
+        # checking docker installed
         if command -v docker >/dev/null 2>&1; then
             chmod +x ./bin/uninstall-docker.sh
             sh ./bin/uninstall-docker.sh

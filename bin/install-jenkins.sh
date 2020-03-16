@@ -11,6 +11,7 @@ echo "Installing jenkins on docker..."
 DOCKER_COMPOSE_EXE=$(which docker-compose)
 
 if [ -f $DOCKER_COMPOSE_EXE ]; then
+    docker image build -t jenkins:latest -f env/jenkins/Dockerfile
     docker-compose -f env/jenkins/docker-compose.yaml up -d
 else
     echo "Docker compose not instaled."

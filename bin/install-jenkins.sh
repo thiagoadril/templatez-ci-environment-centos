@@ -26,6 +26,12 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
 
         echo ""
         echo "Jenkins installed on docker." 
+
+        echo ""
+        echo "Jenkins instalation secret admin password"
+        echo ""
+        docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+        echo ""
     }
 else
     echo "Docker compose not installed."

@@ -5,9 +5,6 @@
 # CreatedOn : 2020/03/15
 # -----------------------------------------------
 
-echo ""
-echo "Installing jenkins on docker..."
-
 DOCKER_COMPOSE_EXE=$(which docker-compose)
 
 if [ -f $DOCKER_COMPOSE_EXE ]; then
@@ -16,6 +13,10 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
     docker image inspect jenkins:latest >/dev/null 2>&1 && {
         echo "Jenkins already installed."
     } || {
+
+        echo ""
+        echo "Installing jenkins on docker..."
+
         echo "Build jenkins image on docker..."
         docker image build ./env/jenkins -t jenkins:latest
 

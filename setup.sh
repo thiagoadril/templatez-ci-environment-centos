@@ -53,7 +53,7 @@ do
             chmod +x ./bin/install-jenkins.sh
             sh ./bin/install-jenkins.sh
         else
-            echo "Docker and Docker Compose not instaled."
+            echo "Jenkins not installed."
         fi
 
         echo "----------------------------------------------"
@@ -71,7 +71,7 @@ do
             chmod +x ./bin/uninstall-jenkins.sh
             sh ./bin/uninstall-jenkins.sh
         else
-            echo "Docker and Docker Compose not instaled."
+            echo "Jenkins not installed."
         fi
 
         # checking docker instaled

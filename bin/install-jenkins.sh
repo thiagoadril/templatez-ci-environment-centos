@@ -30,7 +30,30 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
         echo ""
         echo "Jenkins instalation secret admin password"
         echo ""
-        docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+        echo "Waiting 60 seconds for secret admin password..."
+        run=1
+        counter=0
+        while [ $run -eq 1 ]
+        do
+            docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword >/dev/null 2>&1 && {
+                echo ""
+                docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+                echo ""
+                run=0
+            } || {
+                echo "Waiting..."
+            }
+
+            if [ $counter -eq 12 ]; then 
+                run=0
+            else
+                sleep 5
+            fi
+
+            counter=$(( $counter + 1 ))
+        done
+
         echo ""
     }
 else

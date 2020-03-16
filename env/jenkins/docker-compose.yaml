@@ -7,7 +7,7 @@ services:
       - '8080:8080'
       - '8443:8443'
       - '50000:50000'
-    environment:
+    #environment:
       #- ''
       #- 'JENKINS_USERNAME=admin'
       #- 'JENKINS_PASSWORD=admin'

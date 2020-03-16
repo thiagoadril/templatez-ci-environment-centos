@@ -23,7 +23,7 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
     echo "Removing user to group..."
     sudo gpasswd -d root docker
 else
-    echo "Docker compose not instaled."
+    echo "Docker compose not installed."
 fi
 
 echo ""

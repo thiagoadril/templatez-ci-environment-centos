@@ -22,7 +22,7 @@ RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 #    && apt-get install docker-ce=17.12.1~ce-0~debian -y
 #
 
-RUN usermod -aG docker jenkins
+#RUN sudo usermod -a -G docker $USER
 
 
 

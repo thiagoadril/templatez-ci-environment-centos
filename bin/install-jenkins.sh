@@ -34,7 +34,7 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
         echo "Automatically waiting 5 minutes for the secret administrator password ..."
         
         SLEEP_TIME_SECONDS=5
-        MAX_SEARCHING_COUNTER=60
+        MAX_SEARCHING_COUNTER=1
 
         # for calculate time use SLEEP_TIME_SECONDS * MAX_SEARCHING_COUNTER => EX: 12*5 = 60 Seconds = 5 Minute
 
@@ -44,13 +44,12 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
         while [ $HAS_SEARCHING_PASSWORD -eq 1 ]
         do
             docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword >/dev/null 2>&1 && {
-                
                 echo ""
-                echo "Admin secret password is: "
-                echo ""
-
+                echo "----------------------------------------------"
+                echo "[Found] Admin Secret Password"
+                echo "----------------------------------------------"
                 docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
-                
+                echo "----------------------------------------------"
                 echo ""
                 HAS_SEARCHING_PASSWORD=0
             } || {
@@ -64,8 +63,6 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
             SEARCHING_COUNTER=$(( $SEARCHING_COUNTER + 1 ))
         done
 
-
-        HAS_SEARCHING_PASSWORD=1
         if [ $HAS_SEARCHING_PASSWORD -eq 1 ]; then 
         
         echo ""

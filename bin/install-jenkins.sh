@@ -38,6 +38,7 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
 
         # for calculate time use SLEEP_TIME_SECONDS * MAX_SEARCHING_COUNTER => EX: 12*5 = 60 Seconds = 5 Minute
 
+        HAS_RESULT_AUTO=0
         HAS_SEARCHING_PASSWORD=1
         SEARCHING_COUNTER=0
 
@@ -52,6 +53,7 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
                 echo "----------------------------------------------"
                 echo ""
                 HAS_SEARCHING_PASSWORD=0
+                HAS_RESULT_AUTO=1
             } || {
                 echo "Waiting..."
             }
@@ -63,7 +65,7 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
             SEARCHING_COUNTER=$(( $SEARCHING_COUNTER + 1 ))
         done
 
-        if [ $HAS_SEARCHING_PASSWORD -eq 1 ]; then 
+        if [ $HAS_RESULT_AUTO -eq 0 ]; then 
         
         echo ""
         echo "The administrator's secret password was not found within the allotted time, please perform the procedure manually."

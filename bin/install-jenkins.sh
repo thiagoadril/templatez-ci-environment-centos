@@ -32,12 +32,12 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
         echo ""
 
         echo "Automatically waiting 5 minutes for the secret administrator password ..."
+        echo ""
         
-        SLEEP_TIME_SECONDS=5
-        MAX_SEARCHING_COUNTER=1
-
         # for calculate time use SLEEP_TIME_SECONDS * MAX_SEARCHING_COUNTER => EX: 12*5 = 60 Seconds = 5 Minute
 
+        SLEEP_TIME_SECONDS=5
+        MAX_SEARCHING_COUNTER=60
         HAS_RESULT_AUTO=0
         HAS_SEARCHING_PASSWORD=1
         SEARCHING_COUNTER=0

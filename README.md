@@ -1,7 +1,10 @@
 # CI - Environment [CentOS]
 **Environment** template to configure continuous integration.
 
-* CentOS
-* Docker
-* Docker Compose
-* Jenkins
+* Requirements
+    * CentOS 8
+
+* Installation
+    * Docker
+    * Docker Compose
+    * Jenkins

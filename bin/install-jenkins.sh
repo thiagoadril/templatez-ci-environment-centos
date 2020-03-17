@@ -31,31 +31,50 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
         echo "Jenkins instalation secret admin password"
         echo ""
 
-        echo "Waiting 60 seconds for secret admin password..."
+        echo "Automatically waiting 5 minutes for the secret administrator password ..."
         
+        SLEEP_TIME_SECONDS=5
+        MAX_SEARCHING_COUNTER=60
+
+        # for calculate time use SLEEP_TIME_SECONDS * MAX_SEARCHING_COUNTER => EX: 12*5 = 60 Seconds = 5 Minute
+
         HAS_SEARCHING_PASSWORD=1
         SEARCHING_COUNTER=0
 
         while [ $HAS_SEARCHING_PASSWORD -eq 1 ]
         do
             docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword >/dev/null 2>&1 && {
-
+                
                 echo ""
+                echo "Admin secret password is: "
+                echo ""
+
                 docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+                
                 echo ""
-
                 HAS_SEARCHING_PASSWORD=0
-
             } || {
                 echo "Waiting..."
             }
 
-            if [ $SEARCHING_COUNTER -eq 12 ]; then HAS_SEARCHING_PASSWORD=0;
-            elif [ $HAS_SEARCHING_PASSWORD -eq 1 ]; then sleep 5;
+            if [ $SEARCHING_COUNTER -eq $MAX_SEARCHING_COUNTER ]; then HAS_SEARCHING_PASSWORD=0;
+            elif [ $HAS_SEARCHING_PASSWORD -eq 1 ]; then sleep $SLEEP_TIME_SECONDS;
             fi
 
             SEARCHING_COUNTER=$(( $SEARCHING_COUNTER + 1 ))
         done
+
+
+        HAS_SEARCHING_PASSWORD=1
+        if [ $HAS_SEARCHING_PASSWORD -eq 1 ]; then 
+        
+        echo ""
+        echo "The administrator's secret password was not found within the allotted time, please perform the procedure manually."
+        echo ""
+        echo "Try command: docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword"
+        echo ""
+
+        fi
 
         echo ""
     }

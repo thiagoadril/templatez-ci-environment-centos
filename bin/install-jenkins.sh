@@ -32,26 +32,27 @@ if [ -f $DOCKER_COMPOSE_EXE ]; then
         echo ""
 
         echo "Waiting 60 seconds for secret admin password..."
-        run=1
-        counter=0
-        while [ $run -eq 1 ]
+        
+        HAS_SEARCHING_PASSWORD=1
+        SEARCHING_COUNTER=0
+
+        while [ $HAS_SEARCHING_PASSWORD -eq 1 ]
         do
             docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword >/dev/null 2>&1 && {
                 echo ""
                 docker container exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
                 echo ""
-                run=0
+                HAS_SEARCHING_PASSWORD=0
             } || {
                 echo "Waiting..."
             }
 
-            if [ $counter -eq 12 ]; then 
-                run=0
-            else
-                sleep 5
+            if [ $SEARCHING_COUNTER -eq 12 ]; then 
+                HAS_SEARCHING_PASSWORD=0
+            elif [ $HAS_SEARCHING_PASSWORD -eq 1]; then sleep 5;
             fi
 
-            counter=$(( $counter + 1 ))
+            SEARCHING_COUNTER=$(( $SEARCHING_COUNTER + 1 ))
         done
 
         echo ""

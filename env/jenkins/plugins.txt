@@ -1,1 +1,3 @@
+file-operations:latest
+docker-plugin:latest
 workflow-multibranch:latest

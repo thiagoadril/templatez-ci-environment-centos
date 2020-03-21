@@ -24,9 +24,12 @@ if [ -d "$DOCKER_DATA_DIR" ]; then
     echo "Do you want to delete all data '[y/N]'"
 
     read choice
-    if [ "$choice" = 'y' ]; then 
+    if [ "$choice" = 'y' ]; then
+        echo ""
         echo "Removing data..."
+        echo ""
         sudo rm -rf /var/lib/docker;
         echo "Data removed."
+        echo ""
     fi
 fi

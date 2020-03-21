@@ -18,3 +18,4 @@ fi
 
 echo ""
 echo "Docker compose removed."
+echo ""

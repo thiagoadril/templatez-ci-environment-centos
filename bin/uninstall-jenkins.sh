@@ -7,6 +7,7 @@
 
 echo ""
 echo "Uninstalling jenkins on docker..."
+echo ""
 
 DOCKER_COMPOSE_EXE=$(which docker-compose)
 
@@ -28,3 +29,4 @@ fi
 
 echo ""
 echo "Jenkins on docker removed."
+echo ""

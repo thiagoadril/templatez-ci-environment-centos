@@ -7,6 +7,7 @@
 
 sh ./bin/verify-mode.sh
 
+echo ""
 echo "Uninstalling docker..."
 echo ""
 
@@ -20,3 +21,4 @@ sh ./bin/uninstall-docker-data.sh
 
 echo ""
 echo "Docker removed."
+echo ""

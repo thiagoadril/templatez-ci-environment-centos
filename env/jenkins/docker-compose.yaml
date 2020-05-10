@@ -3,6 +3,7 @@ services:
   jenkins:
     image: 'jenkins/jenkins:lts'
     container_name: jenkins
+    restart: unless-stopped
     ports:
       - '8080:8080'
       - '8443:8443'
@@ -14,6 +15,7 @@ services:
     volumes:
       - jenkins_data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
     privileged: true
 volumes:
   jenkins_data:

@@ -1,4 +1,4 @@
-# CI - Environment [CentOS]
+# Templatez CI - Environment [CentOS]
 **Environment** template to configure continuous integration.
 
 * Requirements
